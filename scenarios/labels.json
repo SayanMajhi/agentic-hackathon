@@ -1,0 +1,21 @@
+{
+  "_note": "Owner: UI/demo. Ground truth for scenarios/dev/*. NEVER read by runtime code. Fill every class from ARCHITECTURE.md §7.",
+  "scenarios": {
+    "normal.json":                   {"status": "healthy", "cause": null, "affected_ids": []},
+    "false_report.json":             {"status": "TODO", "cause": null, "affected_ids": []},
+    "congestion.json":               {"status": "TODO", "cause": "TODO", "affected_ids": []},
+    "weak_wifi.json":                {"status": "TODO", "cause": "TODO", "affected_ids": []},
+    "interface_fault.json":          {"status": "TODO", "cause": "TODO", "affected_ids": []},
+    "dns_failure.json":              {"status": "TODO", "cause": "TODO", "affected_ids": []},
+    "dhcp_failure.json":             {"status": "TODO", "cause": "TODO", "affected_ids": []},
+    "ambiguous_congestion_errors.json": {"status": "TODO", "cause": "TODO", "affected_ids": []},
+    "missing_stale.json":            {"status": "TODO", "cause": null, "affected_ids": []},
+    "unit_mismatch.json":            {"status": "TODO", "cause": "TODO", "affected_ids": []},
+    "counter_reset.json":            {"status": "TODO", "cause": "TODO", "affected_ids": []},
+    "schema_0_9.json":               {"status": "TODO", "cause": "TODO", "affected_ids": []},
+    "unsupported_2_x.json":          {"status": "TODO", "cause": null, "affected_ids": []},
+    "missing_message_field.json":    {"status": "TODO", "cause": null, "affected_ids": []},
+    "duplicate_message.json":        {"status": "TODO", "cause": "TODO", "affected_ids": []},
+    "correlation_timeout.json":      {"status": "insufficient_evidence", "cause": null, "affected_ids": []}
+  }
+}

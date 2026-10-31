@@ -1,0 +1,11 @@
+{
+  "_note": "Skeleton smoke-test input only — NOT a labeled scenario.",
+  "incident_id": "INC-0001",
+  "window_end": "2026-10-31T10:30:00Z",
+  "records": [
+    {"source_id": "switch-telemetry", "observed_at": "2026-10-31T10:29:00Z", "link_id": "HOSTEL_UPLINK_01",
+     "link_utilization_pct": 94, "queue_drops": 1200},
+    {"source_id": "client-probe", "observed_at": "2026-10-31T10:29:00Z", "device_id": "HOSTEL_CORE_SW_01",
+     "rtt_sec": 0.28, "packet_loss_pct": null}
+  ]
+}

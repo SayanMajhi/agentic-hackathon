@@ -1,0 +1,14 @@
+{
+  "_note": "SAMPLE topology for the skeleton smoke test. Owner: Backend 2 — replace with the real one (match generator device IDs if it has them).",
+  "nodes": [
+    {"id": "CORE_RTR_01", "type": "router", "zone": "core"},
+    {"id": "HOSTEL_CORE_SW_01", "type": "switch", "zone": "hostel"},
+    {"id": "HOSTEL_AP_01", "type": "ap", "zone": "hostel"},
+    {"id": "DNS_DHCP_01", "type": "server", "zone": "core"}
+  ],
+  "links": [
+    {"link_id": "HOSTEL_UPLINK_01", "a": "CORE_RTR_01", "b": "HOSTEL_CORE_SW_01", "capacity_mbps": 1000},
+    {"link_id": "HOSTEL_AP_LINK_01", "a": "HOSTEL_CORE_SW_01", "b": "HOSTEL_AP_01", "capacity_mbps": 1000},
+    {"link_id": "CORE_SRV_LINK_01", "a": "CORE_RTR_01", "b": "DNS_DHCP_01", "capacity_mbps": 10000}
+  ]
+}

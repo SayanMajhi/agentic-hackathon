@@ -1,0 +1,54 @@
+# Global fault signatures and thresholds — versioned; recorded in every report.
+# Owner: Backend 1. NO value here is final: every `null` is a TODO that needs a number
+# AND a rationale. Never tune these on held-out scenarios (scenarios/heldout/).
+version: "1.0"
+
+window:
+  minutes: 5
+  min_consecutive_samples: 3     # sustained-crossing rule for congestion
+
+thresholds:                      # metric: {warn, critical, direction, rationale}
+  latency_ms:           {warn: null, critical: null, direction: high, rationale: "TODO"}
+  jitter_ms:            {warn: null, critical: null, direction: high, rationale: "TODO"}
+  packet_loss_pct:      {warn: null, critical: null, direction: high, rationale: "TODO"}
+  link_utilization_pct: {warn: null, critical: null, direction: high, rationale: "TODO"}
+  cpu_pct:              {warn: null, critical: null, direction: high, rationale: "TODO"}
+  memory_pct:           {warn: null, critical: null, direction: high, rationale: "TODO"}
+  queue_drops_per_min:  {warn: null, critical: null, direction: high, rationale: "TODO"}
+  interface_errors_per_min: {warn: null, critical: null, direction: high, rationale: "TODO"}
+  retry_rate_pct:       {warn: null, critical: null, direction: high, rationale: "TODO"}
+  rssi_dbm:
+    weak_below: -75
+    uncertain_between: [-75, -67]   # grey zone: neither normal nor weak (ARCHITECTURE.md §3)
+    direction: low
+    rationale: "TODO"
+
+signatures:                      # required = must fire; corroborating = raises fit; contradicting = lowers
+  link_congestion:
+    required: [link_utilization_pct_sustained]
+    corroborating: [queue_drops_rising, latency_elevated]
+    contradicting: [interface_errors_rising]
+  weak_wifi:
+    required: [rssi_weak_or_uncertain, retry_rate_elevated]
+    corroborating: [packet_loss_elevated]
+    contradicting: [ap_uplink_unhealthy]
+  interface_fault:
+    required: [interface_errors_rising_or_flaps]
+    corroborating: [downstream_loss]
+    contradicting: [link_utilization_pct_sustained]
+  dns_failure:
+    required: [dns_lookup_failing]
+    corroborating: [ip_reachability_ok]
+    contradicting: [path_failure]
+  dhcp_failure:
+    required: [dhcp_lease_failing]
+    corroborating: []
+    contradicting: [path_failure]
+  healthy:
+    required: [all_metrics_normal, service_checks_pass]
+    min_coverage: 0.75
+
+decision_gates:                  # ARCHITECTURE.md §4
+  diagnosed: {min_confidence: 0.70, min_coverage: 0.75, min_independent_sources: 2, min_lead: 0.15}
+  probable:  {min_confidence: 0.50}
+  max_query_rounds: 2
